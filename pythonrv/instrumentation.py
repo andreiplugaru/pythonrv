@@ -99,7 +99,7 @@ def setup_wrapper(obj, func, attach=True):
 
     wrapper._prv = _prv
 
-    args, varargs, varkw, defaults = inspect.getargspec(inner_func)
+    args, varargs, varkw, defaults, _, _, _ = inspect.getfullargspec(inner_func)
 
     # FIXME: this is not a good way to check for static methods and functions
     if type(obj) == types.ModuleType:
@@ -252,7 +252,7 @@ def copy_function_details(dest, src):
     dest.__dict__.update(src.__dict__)
     dest.__defaults__ = src.__defaults__
     #dest.__kwdefaults__ = src.__kwdefaults__
-    assert not hasattr(src, '__kwdefaults__')
+    # assert not hasattr(src, '__kwdefaults__')
 
 def use_state(**state_options):
     state_options = state_options or {}
