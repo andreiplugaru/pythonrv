@@ -17,7 +17,7 @@ def instrument(obj, func, pre=None, post=None, attach=True, extra=None):
     extra = extra or {}
 
     # try to get the function from the container object
-    if isinstance(func, basestring):
+    if isinstance(func, str):
         if hasattr(obj, func):
             func = getattr(obj, func)
         else:
